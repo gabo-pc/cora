@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Heart with Angel Wings</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            perspective: 1000px;
+        }
+
+        .heart-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .heart {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+            animation: heartbeat 1.5s infinite, rotate-heart 5s infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -50px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: 50px;
+        }
+
+        .wing {
+            position: absolute;
+            width: 150px;
+            height: 200px;
+            top: -50px;
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform-origin: bottom center;
+            animation: flap 1.5s infinite;
+        }
+
+        .wing.left {
+            left: -170px;
+            transform: rotateY(45deg);
+        }
+
+        .wing.right {
+            right: -170px;
+            transform: rotateY(-45deg);
+        }
+
+        .feather {
+            position: absolute;
+            width: 20px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transform-origin: bottom center;
+            animation: float 3s infinite;
+        }
+
+        .wing.left .feather {
+            left: 0;
+        }
+
+        .wing.right .feather {
+            right: 0;
+        }
+
+        .feather:nth-child(1) {
+            top: 10px;
+            transform: rotate(-20deg);
+        }
+
+        .feather:nth-child(2) {
+            top: 40px;
+            transform: rotate(-10deg);
+        }
+
+        .feather:nth-child(3) {
+            top: 70px;
+            transform: rotate(0deg);
+        }
+
+        .feather:nth-child(4) {
+            top: 100px;
+            transform: rotate(10deg);
+        }
+
+        .feather:nth-child(5) {
+            top: 130px;
+            transform: rotate(20deg);
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1) rotate(-45deg);
+            }
+            50% {
+                transform: scale(1.2) rotate(-45deg);
+            }
+        }
+
+        @keyframes rotate-heart {
+            0% {
+                transform: rotateX(0) rotateY(0) rotate(-45deg);
+            }
+            25% {
+                transform: rotateX(20deg) rotateY(20deg) rotate(-45deg);
+            }
+            50% {
+                transform: rotateX(0) rotateY(40deg) rotate(-45deg);
+            }
+            75% {
+                transform: rotateX(-20deg) rotateY(20deg) rotate(-45deg);
+            }
+            100% {
+                transform: rotateX(0) rotateY(0) rotate(-45deg);
+            }
+        }
+
+        @keyframes flap {
+            0%, 100% {
+                transform: rotateY(45deg);
+            }
+            50% {
+                transform: rotateY(65deg);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-container">
+        <div class="wing left">
+            <div class="feather"></div>
+            <div class="feather"></div>
+            <div class="feather"></div>
+            <div class="feather"></div>
+            <div class="feather"></div>
+        </div>
+        <div class="heart"></div>
+        <div class="wing right">
+            <div class="feather"></div>
+            <div class="feather"></div>
+            <div class="feather"></div>
+            <div class="feather"></div>
+            <div class="feather"></div>
+        </div>
+    </div>
+</body>
+</html>
